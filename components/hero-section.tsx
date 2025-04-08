@@ -67,9 +67,15 @@ export function HeroSection() {
           <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200">
             <Link href="#portfolio">Ver Portafolio</Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+          <Button
+            asChild
+            size="lg"
+            className="bg-transparent text-white border border-white hover:bg-white/10 hover:text-white"
+          >
             <Link href="#contact">Contactar</Link>
           </Button>
+
+
         </div>
       </motion.div>
 

@@ -11,17 +11,11 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 50)
     }
 
     window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const toggleMenu = () => {
@@ -43,7 +37,12 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <Link href="/" className={`font-mono text-2xl font-bold ${isScrolled ? "text-black" : "text-white"}`}>
+        <Link
+          href="/"
+          className={`font-mono text-2xl font-bold transition-colors duration-300 ${
+            isScrolled ? "text-black" : "text-white"
+          }`}
+        >
           ALEX<span className="text-pink-500">.</span>DESIGN
         </Link>
 
@@ -54,11 +53,16 @@ export function Navbar() {
               <li key={index}>
                 <Link
                   href={item.href}
-                  className={`text-sm font-medium tracking-wide transition-colors ${
-                    isScrolled ? "text-gray-700 hover:text-pink-500" : "text-white/90 hover:text-white"
+                  className={`group relative text-sm font-medium tracking-wide transition-colors duration-300 ${
+                    isScrolled
+                      ? "text-gray-700 hover:text-pink-500"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   {item.name}
+                  <span
+                    className={`absolute left-0 -bottom-1 h-[2px] w-0 bg-pink-500 transition-all duration-300 group-hover:w-full`}
+                  ></span>
                 </Link>
               </li>
             ))}
@@ -67,7 +71,9 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className={`md:hidden ${isScrolled ? "text-gray-800" : "text-white"}`}
+          className={`md:hidden transition-colors duration-300 ${
+            isScrolled ? "text-gray-800" : "text-white"
+          }`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -91,10 +97,11 @@ export function Navbar() {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="block text-gray-700 hover:text-pink-500"
                       onClick={() => setIsMenuOpen(false)}
+                      className="group relative block text-gray-700 text-base transition-colors duration-300 hover:text-pink-500"
                     >
                       {item.name}
+                      <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-pink-500 transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </li>
                 ))}
@@ -106,4 +113,3 @@ export function Navbar() {
     </header>
   )
 }
-

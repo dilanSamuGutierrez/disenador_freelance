@@ -37,7 +37,7 @@ export function AboutSection() {
           >
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <Image
-                src="/placeholder.svg?height=800&width=800"
+                src="/img/sobremi.jpeg"
                 alt="Designer portrait"
                 fill
                 className="object-cover"
